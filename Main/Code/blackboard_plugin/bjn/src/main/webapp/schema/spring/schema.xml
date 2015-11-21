@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.blackboard.com/bb-schema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.blackboard.com/bb-schema http://fibbba.medu.com/xsd/bb-schema.xsd"
+        name="SpringDemo" license="Course Delivery">
+	 <comment>This schema contains tables related to the Virtual Classroom.</comment>
+	 <table name="tp_meeting_table">
+		 <comment>A table to store custom data for the sample</comment>
+		 <!-- additional definitions -->
+		 <column name="pk1" data-type="int" nullable="false" identity="true" />
+		 <column name="title" data-type="nvarchar(256)" nullable="false" />
+		 <column name="meeting_id" data-type="int" nullable="false" />
+		 <column name="course_id" data-type="nvarchar(64)" nullable="false" />
+		 <primary-key name="tp_meeting_table_pk1">
+			<columnref name="pk1" />
+		</primary-key>
+	 </table>
+</schema>

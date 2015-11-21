@@ -1,0 +1,16 @@
+{
+  "name": "bjn",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "~1.11.4",
+    "moment": "~2.10.6"
+  }
+}

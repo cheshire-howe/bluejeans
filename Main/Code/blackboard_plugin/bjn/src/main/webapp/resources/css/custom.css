@@ -1,0 +1,126 @@
+.bjn.button-2 {
+	width: 147px;
+	margin-bottom: 15px;
+	cursor: pointer;
+}
+
+.bjn-well {
+    height: 200px;
+    overflow-y: scroll;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#select-all.button-1, #deselect-all.button-1 {
+	width: 55px;
+	margin-left: 20%;
+	cursor: pointer;
+}
+
+#userlists .all-btns {
+	margin-top: 15%;
+}
+
+#userlists ul li {
+    list-style-type: none;
+    cursor: move;
+    background-color: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+li {
+	list-style-type: none;
+}
+
+.submit:disabled {
+	color: #545454 !important;
+	background: #cfcfcf !important;
+    background-image: -moz-linear-gradient(100% 100% 90deg,#b6b6b6,#d6d6d6) !important;
+    background-image: -webkit-gradient(linear,0 0,0 90%,from(#b6b6b6),to(#d6d6d6)) !important;
+    font-weight: normal !important;
+    border: 1px solid #bbb !important;
+}
+
+.btn-go { 
+  color: #ffffff; 
+  background-color: #1B9DBD; 
+  border-color: #023C69; 
+} 
+ 
+.btn-go:hover, 
+.btn-go:focus, 
+.btn-go:active, 
+.btn-go.active, 
+.open .dropdown-toggle.btn-go { 
+  color: #ffffff; 
+  background-color: #24667A; 
+  border-color: #023C69; 
+} 
+ 
+.btn-go:active, 
+.btn-go.active, 
+.open .dropdown-toggle.btn-go { 
+  background-image: none; 
+} 
+ 
+.btn-go.disabled, 
+.btn-go[disabled], 
+fieldset[disabled] .btn-go, 
+.btn-go.disabled:hover, 
+.btn-go[disabled]:hover, 
+fieldset[disabled] .btn-go:hover, 
+.btn-go.disabled:focus, 
+.btn-go[disabled]:focus, 
+fieldset[disabled] .btn-go:focus, 
+.btn-go.disabled:active, 
+.btn-go[disabled]:active, 
+fieldset[disabled] .btn-go:active, 
+.btn-go.disabled.active, 
+.btn-go[disabled].active, 
+fieldset[disabled] .btn-go.active { 
+  background-color: #1B9DBD; 
+  border-color: #023C69; 
+} 
+ 
+.btn-go .badge { 
+  color: #1B9DBD; 
+  background-color: #ffffff; 
+}
+
+#meetingInfoTrigger {
+	cursor: pointer;
+}
+
+.meeting-title {
+	margin: 1em 0 0;
+}
+
+/* Powered by Bluejeans */
+
+.block_bjn.bjn-branding {
+    padding-top: 25px;
+    text-align: right;
+}
+
+.bjn-branding p {
+    margin-bottom: 0;
+}
+
+.form.bjn-branding {
+    float: right;
+}
+
+/* Powered by BlueJeans Header */
+
+.bjn-branding.bjn-logo-header {
+    float: right;
+    position: relative;
+    top: -56px;
+}

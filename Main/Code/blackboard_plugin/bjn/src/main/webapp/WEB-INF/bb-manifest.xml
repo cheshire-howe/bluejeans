@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin https://maven.blackboard.com/content/repositories/releases/blackboard/platform/bb-manifest-plugin/9.1.110082.0/bb-manifest-plugin-9.1.110082.0.xsd">
+	<plugin>
+
+		<name value="Virtual Classroom" />
+		<handle value="virtual-classroom" />
+		<description value="Schedule live online classes" />
+		<default-locale value="en_US" />
+
+		<version value="1.0" />
+		<requires>
+			<bbversion value="9.1" />
+		</requires>
+
+		<vendor>
+			<id value="tp" />
+			<name value="3 Point Turn" />
+			<url value="http://www.threepointturn.com" />
+			<description value="Developers" />
+		</vendor>
+
+
+		<!-- These two JSPs are displayed when the "remove" and "properties" buttons -->
+		<!-- are pressed on the Building Blocks administration page. -->
+		<!-- <http-actions> <config value="admin/configure.jsp"/> <remove value="admin/remove.jsp"/> 
+			</http-actions> -->
+			
+		<!-- <module-defs>
+		    <module-type ext-ref="virtual-classroom-module" title="Sample Plug-in Module Type" uicreatable="true">
+		        <jsp-dir>module</jsp-dir>
+		        <jsp>
+		            <view>view.jsp</view>
+		            <admin>admin.jsp</admin>
+		        </jsp>
+		    </module-type>
+		</module-defs> -->
+		
+		<!-- Course Tool Application Definition -->
+		<application-defs>
+            <application handle="virtual-classroom" type="course_only" name="plugin.tool.title">
+                <description>plugin.tool.description</description>
+                <links>
+                    <link>
+                        <type value="tool"/>
+                        <name value="plugin.link.vc.name"/>
+                        <url value=""/>
+                        <handle value="vc"/>
+                        <description
+                                value="plugin.link.vc.description"/>
+                    </link>
+                </links>
+            </application>
+        </application-defs>
+        
+        <!-- Portal Module Definitions -->
+    	<!-- <module-defs>
+      		<module-type ext-ref="virtual-classroom-module" title="virtual-classroom-module.title" uicreatable="true">
+		        <jsp-dir>WEB-INF</jsp-dir>
+		        <jsp>
+		        	<view>view.jsp</view>
+		        </jsp>
+	      	</module-type>
+      		<module type="portal/includehtml" isadmin="true" useraddable="true" isdeletable="false" isdetachable="false" title="Virtual Classroom">
+        		<description></description>
+        		<ExtraInfo />
+        		<module-groups>
+          			<module-group id="Everyone" />
+        		</module-groups>
+      		</module>
+    	</module-defs> -->
+    
+		<!-- Custom Content Types -->
+		<!-- <content-handlers> <content-handler> <name value="content_handler.name" 
+			/> <handle value="resource/x-mnmt-content" /> <http-actions> <create value="content/create.jsp" 
+			/> <modify value="content/edit.jsp" /> <view value="content/view.jsp" /> 
+			<cpview value="content/cpview.jsp" /> </http-actions> <application value="mnmt-app1"/> 
+			<icons> <listitem value="images/50x50.gif" /> </icons> <types> <type> <action-type 
+			value="collaborate" /> </type> </types> </content-handler> </content-handlers> -->
+
+		<!-- Add custom score providers for gradeable items. <score-providers> 
+			<score-provider> <name value="example-score-provider" /> <handle value="resource/x-mnmt-score" 
+			/> <review-action value="" /> <grade-action value="" /> <allow-multiple value="false" 
+			/> <attempt-based value="false" /> </score-provider> </score-providers> -->
+
+		<!-- Add custom schema elements to Learn. http://help.blackboard.com/b2/schema.html -->
+		<schema-dirs>
+			<schema-dir dir-name="spring" />
+		</schema-dirs>
+
+		<!-- Create custom entitlements that are automatically applied to any role 
+			that already has the "template" entitlement. <entitlements> <entitlement 
+			uid="course.mnmt-app.EXECUTE" label="course.mnmt-app.EXECUTE.label" type="Course" 
+			template="course.blog.grade.EXECUTE" /> </entitlements> -->
+
+		<entitlements>
+			<entitlement uid="atd.bbws.admin.MODIFY" label="atd.bbws.entitlement.system"
+				type="System" template="system.plugin.MODIFY" />
+		</entitlements>
+
+		<!-- Code permissions required for proper operation -->
+		<permissions>
+			<permission type="persist" name="*"
+				actions="create,modify,delete,persist" />
+			<permission type="attribute" name="user.*" actions="get,set" />
+			<permission type="java.util.PropertyPermission" name="*"
+				actions="read,write" />
+			<permission type="socket" name="*" actions="connect,resolve" />
+			<permission type="java.net.NetPermission" name="*"
+				actions="getProxySelector" />
+			<permission type="runtime" name="accessDeclaredMembers"
+				actions="" />
+			<permission type="java.util.PropertyPermission" name="java.protocol.handler.pkgs"
+				actions="write" />
+
+			<!-- We need these permissions to allow Spring to auto-discover -->
+			<!-- and wire beans together and Hibernate to interact with objects. -->
+			<!-- -->
+			<permission type="java.lang.reflect.ReflectPermission"
+				name="suppressAccessChecks" />
+			<permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
+			<permission type="java.lang.RuntimePermission" name="createClassLoader" />
+			<permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
+			<permission type="java.io.FilePermission" name="${java.home}/lib/*" actions="read" />
+			<permission type="java.io.FilePermission" name="/home/vagrant/output.json" actions="write" />
+			<permission type="java.util.logging.LoggingPermission" name="control" />
+
+			<permission type="blackboard.data.AttributePermission"
+				name="user.authinfo" actions="get" />
+			<permission type="blackboard.data.AttributePermission"
+				name="user.personalinfo" actions="get" />
+			<permission type="blackboard.data.AttributePermission"
+				name="user.cardnumber" actions="get" />
+			<permission type="blackboard.persist.PersistPermission"
+				name="userlifecycleeventimpl" actions="get" />
+			<permission type="blackboard.persist.PersistPermission"
+				name="userlifecycleeventpropertyimpl" actions="get" />
+			<permission type="blackboard.persist.PersistPermission"
+				name="user" actions="get" />
+
+			<!-- Boilerplate, cut back on these once code works -->
+			<!-- <permission type="attribute" name="user.authinfo" actions="get,set" 
+				/> <permission type="attribute" name="user.personalinfo" actions="get,set" 
+				/> <permission type="java.io.FilePermission" name="../../../content/vi/bb_bb60/sessions/-" 
+				actions="write"/> <permission type="java.io.FilePermission" name="../../../content/vi/BBLEARN/sessions/-" 
+				actions="write"/> <permission type="java.io.FilePermission" name="../../../content/vi/bb_bb60/recyclebin/-" 
+				actions="write,delete"/> <permission type="java.io.FilePermission" name="../../../content/vi/BBLEARN/recyclebin/-" 
+				actions="write,delete"/> <permission type="java.io.FilePermission" name="../../../apps/tomcat/temp/-" 
+				actions="write,delete"/> <permission type="java.lang.reflect.ReflectPermission" 
+				name="suppressAccessChecks" /> <permission type="java.lang.reflect.ReflectPermission" 
+				name="suppressAccessChecks" actions="" /> <permission type="java.lang.RuntimePermission" 
+				name="accessClassInPackage.org.apache.jasper.runtime" /> <permission type="java.lang.RuntimePermission" 
+				name="accessClassInPackage.org.apache.jasper.runtime.*" actions="" /> <permission 
+				type="java.lang.RuntimePermission" name="accessDeclaredMembers" /> <permission 
+				type="java.lang.RuntimePermission" name="createClassLoader" /> <permission 
+				type="java.lang.RuntimePermission" name="getAttribute" /> <permission type="java.lang.RuntimePermission" 
+				name="getClassLoader" /> <permission type="java.lang.RuntimePermission" name="setContextClassLoader" 
+				/> <permission type="java.lang.RuntimePermission" name="accessClassInPackage.org.apache.*" 
+				actions="" /> <permission type="java.lang.RuntimePermission" name="accessClassInPackage.sun.misc" 
+				/> <permission type="java.lang.RuntimePermission" name="accessClassInPackage.sun.security.*" 
+				actions="" /> <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" 
+				/> <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" 
+				actions="" /> <permission type="java.lang.RuntimePermission" name="createClassLoader" 
+				actions="" /> <permission type="java.lang.RuntimePermission" name="createClassLoader" 
+				actions="create" /> <permission type="java.lang.RuntimePermission" name="db.connection.*" 
+				/> <permission type="java.lang.RuntimePermission" name="getClassLoader" actions="" 
+				/> <permission type="java.lang.RuntimePermission" name="getProtectionDomain" 
+				actions="" /> <permission type="java.lang.RuntimePermission" name="setFactory" 
+				actions="" /> <permission type="java.lang.RuntimePermission" name="stopThread" 
+				/> <permission type="java.lang.RuntimePermission" name="stopThread" actions=""/> 
+				<permission type="java.net.SocketPermission" name="*" actions="resolve,connect" 
+				/> <permission type="persist" name="content" actions="persist" /> <permission 
+				type="persist" name="course" actions="create,modify,delete" /> <permission 
+				type="persist" name="user" actions="create,modify,delete" /> <permission 
+				type="persist" name="userrole" actions="create,modify,delete" /> <permission 
+				type="socket" name="*" actions="connect,resolve" /> -->
+		</permissions>
+
+	</plugin>
+</manifest>

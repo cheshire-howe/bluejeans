@@ -1,0 +1,15 @@
+﻿@model IEnumerable<BJN.Domain.Entities.ApplicationUser>
+@{
+    ViewBag.Title = "ShowUsers";
+}
+
+<h2>ShowUsers</h2>
+
+<table>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+        </tr>
+    }
+</table>

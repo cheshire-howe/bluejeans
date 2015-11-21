@@ -1,0 +1,345 @@
+@import "vendor/jquery-ui.min.css";
+
+.clear {
+    clear: both;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.btn a {
+    color: white;
+}
+
+#join-now {
+    margin: 15px 0 25px 25px;
+}
+
+.bjn-well {
+    height: 200px;
+    overflow-y: scroll;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+.bjnmeeting.attendees ul{
+    list-style:none;
+    margin-left:0;
+}
+.bjnmeeting.attendees ul li{
+    padding-left:30px;
+    background:url('/theme/image.php/best_education_system28/core/1436466067/t/collapsed') center left no-repeat;
+}
+.ui-accordion .ui-accordion-content {
+    height: auto;
+}
+
+#userlists h4 {
+    margin-left: 30px;
+}
+
+/* Block Styles */
+
+.block_bjn .content {
+    padding-bottom: 0 !important;
+}
+
+.block_bjn img {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.block_bjn ul li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.block_bjn .footer {
+    opacity: 0.8;
+}
+
+.block_bjn .dates {
+    font-size: .75em;
+}
+
+/* Powered by Bluejeans */
+
+.block_bjn.bjn-branding {
+    padding-top: 25px;
+    text-align: right;
+}
+
+.bjn-branding p {
+    margin-bottom: 0;
+}
+
+.form.bjn-branding {
+    float: right;
+}
+
+/* Powered by BlueJeans Header */
+
+.bjn-branding.bjn-logo-header {
+    float: right;
+    position: relative;
+    top: -56px;
+}
+
+/* Page Styles */
+
+.bjnmeeting.bjn-box {
+    padding: 10px;
+}
+
+.bjnmeeting h2 {
+    font-size: 1.3em;
+}
+
+.bjnmeeting.formitems {
+    float: left;
+    width: 75%;
+}
+
+.bjnmeeting.formitems .selectall-attendees .modal {
+    margin-left: -360px;
+    width: 720px;
+}
+
+.bjnmeeting.formitems .selectall-attendees .modal img {
+    padding: 5px;
+}
+
+.bjnmeeting.formitems .selectall-attendees .all-btns {
+    margin-top: 15%;
+}
+
+.bjnmeeting.formitems .selectall-attendees .all-btns .row .btn {
+    margin-left: 45%;
+}
+
+.bjnmeeting.formitems #userlists ul li {
+    list-style-type: none;
+    cursor: move;
+    background-color: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+}
+
+.bjnmeeting #response img {
+    padding: 10px;
+}
+
+.bjnmeeting #btn-video {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.bjnmeeting #btn-join {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sortable-item {
+    list-style-type: none;
+}
+
+.mform .fcontainer .bjnmeeting.formitems .fitem .felement > input[type="text"] {
+    max-width: 100%;
+}
+
+.mform .fcontainer .bjnmeeting.formitems .fitem .felement > select {
+    width: auto;
+}
+
+.mform .fcontainer .bjnmeeting.formitems .fitem .felement > select[multiple="multiple"] {
+    width: 100%;
+}
+
+.mform .fcontainer .bjnmeeting.formitems .fitem .felement > .classlength[type="text"] {
+    max-width: 65px;
+}
+
+.bjnmeeting .left {
+    float: left;
+    width: 55%;
+}
+
+.bjnmeeting .right {
+    float: left;
+    width: 35%;
+    padding-left: 10%;
+}
+
+.bjn-block-left {
+    float: left;
+    width: 20%;
+    max-width: 45px;
+}
+
+.bjn-block-right {
+    float: left;
+    width: 78%;
+    padding-left: 2%;
+}
+
+/* Recurring */
+
+#id_repeat_meeting_day_of_month {
+    width: 20px;
+}
+
+#id_recurssion_ending_sub_options_occurrences, #id_repeat_meeting_frequency_daily {
+    width: 40px;
+}
+
+#fitem_id_enddate .fitemtitle {
+    display: none;
+}
+
+#fitem_id_enddate .felement {
+    margin: 0;
+}
+
+@media (min-width: 992px) {
+    .mform .bjnmeeting.formitems .fitem .fitemtitle {
+        width: 25%;
+    }
+
+    .mform .fcontainer .bjnmeeting.formitems .fitem .felement > input[type="text"] {
+        min-width: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 959px) {
+    .bjn-block-left {
+        float: left;
+        width: 45px;
+    }
+
+    .bjn-block-right {
+        float: left;
+        width: 78%;
+        padding-left: 2%;
+    }
+}
+
+@media (max-width: 767px) {
+    .bjnmeeting.formitems .selectall-attendees .modal {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+        margin: 0;
+    }
+
+    .bjnmeeting.formitems .selectall-attendees .modal-body {
+        max-height: none;
+    }
+
+    .bjn-well {
+        height: 120px;
+    }
+
+    .bjnmeeting .left {
+        float: none;
+        width: 100%;
+    }
+
+    .bjnmeeting .right {
+        float: none;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .bjn-branding.bjn-logo-header {
+        float: none;
+        top: -20px;
+        width: 100%;
+    }
+}
+
+/* Bootstrap Alerts */
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert h4 {
+    margin-top: 0;
+    color: inherit;
+}
+.alert .alert-link {
+    font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+    margin-bottom: 0;
+}
+.alert > p + p {
+    margin-top: 5px;
+}
+.alert-dismissable,
+.alert-dismissible {
+    padding-right: 35px;
+}
+.alert-dismissable .close,
+.alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert-success hr {
+    border-top-color: #c9e2b3;
+}
+.alert-success .alert-link {
+    color: #2b542c;
+}
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+.alert-info hr {
+    border-top-color: #a6e1ec;
+}
+.alert-info .alert-link {
+    color: #245269;
+}
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+.alert-warning hr {
+    border-top-color: #f7e1b5;
+}
+.alert-warning .alert-link {
+    color: #66512c;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.alert-danger hr {
+    border-top-color: #e4b9c0;
+}
+.alert-danger .alert-link {
+    color: #843534;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/bjn/db" VERSION="20150708" COMMENT="XMLDB file for Moodle blocks/bjn"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_bjn" COMMENT="Default comment for block_bjn, please edit me">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="blockid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Id of the block instance"/>
+        <FIELD NAME="meetingtitle" TYPE="char" LENGTH="140" NOTNULL="true" SEQUENCE="false" COMMENT="Title of the Meeting"/>
+        <FIELD NAME="meetingid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Id of the Bluejeans Meeting"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Id of the course this class belongs to"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="140" NOTNULL="true" SEQUENCE="false" COMMENT="Email address of creator"/>
+        <FIELD NAME="starttime" TYPE="int" LENGTH="14" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Start time of the scheduled meeting"/>
+        <FIELD NAME="endtime" TYPE="int" LENGTH="14" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="End time of the meeting"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
