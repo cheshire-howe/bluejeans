@@ -1,0 +1,15 @@
+﻿@model HandleErrorInfo
+
+@{
+    ViewBag.Title = "Bad Request";
+    Layout = "~/Areas/BlueJeans/Views/Shared/_LayoutBlueJeans.cshtml";
+}
+
+<h2 class="text-danger">Error.</h2>
+<h4 class="text-danger">An error occurred while processing your request.</h4>
+<table class="table">
+    <tr>
+        <td>Exception</td>
+        <td>@Model.Exception.Message<br />@Model.Exception.StackTrace</td>
+    </tr>
+</table>

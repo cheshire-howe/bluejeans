@@ -1,0 +1,12 @@
+﻿@model bool
+
+@Html.DropDownListFor(m => m, new SelectList(
+        new[] 
+        { 
+            new { Value = "true", Text = "Yes" },
+            new { Value = "false", Text = "No" },
+        },
+        "Value",
+        "Text",
+        Model
+    ), new { @class = "form-control" })

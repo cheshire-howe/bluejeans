@@ -94,8 +94,8 @@ namespace BJN.Test.UnitTesting
         {
             ""title"": ""Test"",
             ""description"": ""My meeting"",
-            ""start"": 1432310400000,
-            ""end"": 1432314000000,
+            ""start"": 1532310400000,
+            ""end"": 1532314000000,
             ""timezone"": ""America/New_York"",
             ""advancedMeetingOptions"": {
                 ""videoBestFit"": false,
@@ -118,7 +118,7 @@ namespace BJN.Test.UnitTesting
             ""endPointVersion"": ""1.80"",
             ""attendees"": [
                 {
-                    ""email"": ""josh.zoff@threepointturn.com""
+                    ""email"": ""josh.zoff@example.com""
                 }
             ]
         }";

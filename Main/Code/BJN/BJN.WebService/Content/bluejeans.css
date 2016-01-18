@@ -1,0 +1,12 @@
+﻿.bjn-display dd, .bjn-display dt {
+    line-height: 1.7em;
+}
+
+.bjn-go {
+    margin: 10px 0 10px 0;
+}
+
+.meeting-title {
+    font-size: 2em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

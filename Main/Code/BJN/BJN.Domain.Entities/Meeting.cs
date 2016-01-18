@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,13 @@ namespace BJN.Domain.Entities
     public class Meeting
     {
         public int id { get; set; }
+        [Display(Name = "Class Title")]
         public string title { get; set; }
         public string description { get; set; }
         public long start { get; set; }
         public long end { get; set; }
         public string timezone { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public RecurrencePattern recurrencePattern { get; set; }
         public AdvancedMeetingOptions advancedMeetingOptions { get; set; }
         public Moderator moderator { get; set; }

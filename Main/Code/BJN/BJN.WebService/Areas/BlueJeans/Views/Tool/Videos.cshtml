@@ -1,0 +1,34 @@
+﻿@model string[]
+@{
+    ViewBag.Title = "Videos";
+    Layout = "~/Areas/BlueJeans/Views/Shared/_LayoutBlueJeans.cshtml";
+}
+
+<h2>Videos</h2>
+
+@if (Model.Length == 0)
+{
+    <p>Sorry, no videos to display.</p>
+}
+else
+{
+    <div id="accordion">
+        @foreach (var url in Model)
+        {
+            <h3>Video</h3>
+            <div>
+                <p>
+                    <video controls="controls" width="640" height="360">
+                        <source src="@url" type="video/mp4" />
+                    </video>
+                    <p><strong>Download video:</strong> <a href="@url">MP4 format</a></p>
+                </p>
+            </div>
+        }
+    </div>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/videos")
+}

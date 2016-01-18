@@ -1,0 +1,25 @@
+{
+  "name": "BJN",
+  "authors": [
+    "Josh Zoff <josh.zoff@threepointturn.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "BJN.WebService/Scripts",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery-ui": "~1.11.4",
+    "moment": "~2.11.0"
+  }
+}

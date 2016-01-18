@@ -1,0 +1,10 @@
+﻿@model DateTime
+     
+@Html.TextBox("", DateTime.Now.AddMinutes(5).ToString("yyyy/MM/dd HH:mm"), new { @class = "form-control"})
+
+<script type="text/javascript">
+    (function($) {
+        // target only the input in this editor template
+        $('#@Html.IdForModel()').datetimepicker();
+    })(jQuery);
+</script>

@@ -18,7 +18,7 @@ namespace BJN.Domain.Entities
         public string defaultLayout { get; set; }
         public string welcomeMessage { get; set; }
         public int originPopId { get; set; }
-        public bool allow720p { get; set; }
+        public bool? allow720p { get; set; }
         public bool playAudioAlerts { get; set; }
         public bool showVideoAnimations { get; set; }
         public bool publishMeeting { get; set; }

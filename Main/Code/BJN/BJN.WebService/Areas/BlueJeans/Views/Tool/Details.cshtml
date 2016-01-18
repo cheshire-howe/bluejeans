@@ -1,0 +1,103 @@
+﻿@model BJN.WebService.Areas.BlueJeans.Models.LtiMeetingViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/BlueJeans/Views/Shared/_LayoutBlueJeans.cshtml";
+}
+
+<h2>@Html.DisplayFor(x => x.title)</h2>
+<p>
+    @if (User.IsInRole("Teacher"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = ViewBag.LtiMeetingId })<text> |</text>
+        @Html.ActionLink("Delete", "Delete", new { id = ViewBag.LtiMeetingId })<text> |</text>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal bjn-display">
+        @if (Model.description != null)
+        {
+            <dt>@Html.LabelFor(x => x.description)</dt>
+            @*<dd>@Html.DisplayFor(x => Html.Raw(x.description))</dd>*@
+            <dd>@Html.Raw(Model.description)</dd>
+        }
+        
+        <dt>Time of Class</dt>
+        @if (Model.recurrencePattern != null)
+        {
+            <dd><em>@Model.recurrencePatternValues["when"]</em></dd>
+        }
+        <dd>@Model.durationString</dd>
+        
+        @if (Model.attendees.Count > 0)
+        {
+            <dt>Invitees</dt>
+            foreach (var attendee in Model.attendees)
+            {
+                <dd>@attendee.email</dd>
+            }
+        }
+        
+        <dt>Location</dt>
+        <dd>BlueJeans Video Conference</dd>
+        @if (User.IsInRole("Teacher"))
+        {
+            <dd>
+                <a href="https://bluejeans.com/@Model.numericMeetingId/@ViewBag.ModeratorPasscode" target="_blank">
+                    <button class="btn btn-success bjn-go">Join Meeting as Moderator</button>
+                </a>
+            </dd>
+        }
+        else if (User.IsInRole("Student"))
+        {
+            if (Model.addAttendeePasscode)
+            {
+                <dd>
+                    <a href="https://bluejeans.com/@Model.numericMeetingId/@Model.attendeePasscode" target="_blank">
+                        <button class="btn btn-success bjn-go">Join Meeting as Participant</button>
+                    </a>
+                </dd>
+            }
+            else
+            {
+                <dd>
+                    <a href="https://bluejeans.com/@Model.numericMeetingId" target="_blank">
+                        <button class="btn btn-success bjn-go">Join Meeting as Participant</button>
+                    </a>
+                </dd>
+            }
+        }
+        
+        <dt>Recordings</dt>
+        <dd>
+            <a href="@Url.Action("Videos", new { id = ViewBag.LtiMeetingId, numericMeetingId = Model.numericMeetingId })">
+                <button class="btn btn-success bjn-go">View Recordings From This Class</button>
+            </a>
+        </dd>
+        
+        <dt id="meetingInfoTrigger">Meeting Information</dt>
+        <dd id="placeholder-dd"></dd>
+        <div style="display: none;" id="meetingInfo">
+        @if (Model.addAttendeePasscode)
+        {
+            <dd>Participant Passcode</dd>
+            <dd>@Model.attendeePasscode</dd>
+            <dd>Meeting URL</dd>
+            <dd>https://bluejeans.com/@Model.numericMeetingId/@Model.attendeePasscode</dd>
+        }
+        else
+        {
+            <dd>Meeting URL</dd>
+            <dd>https://bluejeans.com/@Model.numericMeetingId</dd>
+        }
+        </div>
+    </dl>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/details")
+}

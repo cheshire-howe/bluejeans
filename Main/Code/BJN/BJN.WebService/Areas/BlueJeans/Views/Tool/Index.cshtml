@@ -1,0 +1,20 @@
+﻿@model IEnumerable<BJN.WebService.Areas.BlueJeans.Models.LtiMeetingViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/BlueJeans/Views/Shared/_LayoutBlueJeans.cshtml";
+}
+
+@Html.Action("Context")
+
+<h2>Scheduled Classes</h2>
+
+@foreach (var meeting in Model)
+{
+    <h1 class="meeting-title">@Html.ActionLink(meeting.title, "Details", new { id = meeting.LtiMeetingId })</h1>
+    <p><em>Next Class: <script>document.write(moment.unix(@meeting.nextStart / 1000).format("dddd, MMMM Do YYYY, h:mm a"));</script></em></p>
+}
+
+@if (User.IsInRole("Teacher"))
+{
+    @Html.ActionLink("Schedule Class", "Create")
+}

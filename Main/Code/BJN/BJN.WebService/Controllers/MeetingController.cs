@@ -155,7 +155,7 @@ namespace BJN.WebService.Controllers
 
             if (meeting.recurrencePattern == null)
             {
-                meeting.recurrencePattern = new RecurrencePattern() { };
+                meeting.recurrencePattern = null; //new RecurrencePattern() { };
             }
 
             await _apiClient.GetToken(user);

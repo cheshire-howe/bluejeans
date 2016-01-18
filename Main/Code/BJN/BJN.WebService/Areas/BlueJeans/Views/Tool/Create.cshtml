@@ -1,0 +1,326 @@
+﻿@model BJN.WebService.Areas.BlueJeans.Models.LtiMeetingViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/BlueJeans/Views/Shared/_LayoutBlueJeans.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Tool", FormMethod.Post, new { id = "bjnform" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.startDateTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.startDateTime, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.startDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.lengthOfClass, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lengthOfClass, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.lengthOfClass, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.attendeesString, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.attendeesString, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.attendeesString, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <!-- hidden elements for unix time -->
+        @Html.HiddenFor(x => x.start)
+        @Html.HiddenFor(x => x.end)
+        
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Repeat Meeting
+            </label>
+            <div class="col-sm-10">
+                <div class="checkbox" id="use_repeat_meeting">
+                        <input type="checkbox" id="repeat">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recurring Meeting Options -->
+        <div class="col-md-offset-2 col-md-10">
+            <div id="reccurrence_options" class="recurrence_options_container" style="display: none;">
+                <hr />
+                <div class="meetingUseRepeatMeeting_error"></div>
+                <div class="fieldWrapper" id="div_repeat_meeting_type">
+                    <div class="repeatMeetingType_l">
+                        <label for="id_repeat_meeting">Repeats</label>:
+                    </div>
+                    <div id="repeatMeetingType">
+                        <select name="repeat_meeting" id="id_repeat_meeting">
+                            <option value="DAILY" selected="selected">Daily</option>
+                            <option value="WEEKLY">Weekly</option>
+                            <option value="MONTHLY">Monthly</option>
+                        </select> <span id="frequency_monthly_weekly" style="display: none;">
+                            every &nbsp;<input name="repeat_meeting_frequency" value="1"
+                                               maxlength="2" type="text" id="id_repeat_meeting_frequency"
+                                               size="2" aria-label="Weekly Repeat Frequency">&nbsp; <span id="frequency_unit"></span>
+
+                        </span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <div class="fieldWrapper" id="div_daily_options"
+                     style="display: block;">
+                    <div class="dailyOptions_l">&nbsp;</div>
+                    <div id="dailyOptions">
+                        <input type="radio"
+                               id="id_repeat_meeting_sub_options_daily_weekdays"
+                               name="repeat_meeting_sub_options_daily_weekdays" value="True">
+                        <label for="id_repeat_meeting_sub_options_daily_weekdays">Weekdays</label>
+                        <input type="radio"
+                               id="id_repeat_meeting_sub_options_daily_weekdays_1"
+                               name="repeat_meeting_sub_options_daily_weekdays"
+                               checked="checked" value="False"> <label for="id_repeat_meeting_sub_options_daily_weekdays_1">every</label>
+                        <input name="repeat_meeting_frequency_daily" value="1"
+                               maxlength="3" type="text" id="id_repeat_meeting_frequency_daily"
+                               size="3" aria-label="Daily Repeat Frequency">&nbsp;days
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <div class="fieldWrapper" id="div_weekly_options"
+                     style="display: none;">
+                    <div class="weeklyOptions_1">
+                        <label for="id_repeat_meeting_day_of_week_weekly_0">
+                            Repeats On
+                        </label>:
+                    </div>
+                    <div id="weeklyOptions">
+                        <ul>
+                            <li>
+                                <label for="id_repeat_meeting_day_of_week_weekly_0">
+                                    <input type="checkbox" name="repeat_meeting_day_of_week_weekly"
+                                           value="2" id="id_repeat_meeting_day_of_week_weekly_0">
+                                    Monday
+                                </label>
+                            </li>
+                            <li>
+                                <label for="id_repeat_meeting_day_of_week_weekly_1">
+                                    <input type="checkbox" name="repeat_meeting_day_of_week_weekly"
+                                           value="4" id="id_repeat_meeting_day_of_week_weekly_1">
+                                    Tuesday
+                                </label>
+                            </li>
+                            <li>
+                                <label for="id_repeat_meeting_day_of_week_weekly_2">
+                                    <input type="checkbox" name="repeat_meeting_day_of_week_weekly"
+                                           value="8" id="id_repeat_meeting_day_of_week_weekly_2">
+                                    Wednesday
+                                </label>
+                            </li>
+                            <li>
+                                <label for="id_repeat_meeting_day_of_week_weekly_3">
+                                    <input type="checkbox" name="repeat_meeting_day_of_week_weekly"
+                                           value="16" id="id_repeat_meeting_day_of_week_weekly_3">
+                                    Thursday
+                                </label>
+                            </li>
+                            <li>
+                                <label for="id_repeat_meeting_day_of_week_weekly_4">
+                                    <input type="checkbox" name="repeat_meeting_day_of_week_weekly"
+                                           value="32" id="id_repeat_meeting_day_of_week_weekly_4">
+                                    Friday
+                                </label>
+                            </li>
+                            <li>
+                                <label for="id_repeat_meeting_day_of_week_weekly_5">
+                                    <input type="checkbox" name="repeat_meeting_day_of_week_weekly"
+                                           value="64" id="id_repeat_meeting_day_of_week_weekly_5">
+                                    Saturday
+                                </label>
+                            </li>
+                            <li>
+                                <label for="id_repeat_meeting_day_of_week_weekly_6">
+                                    <input type="checkbox" name="repeat_meeting_day_of_week_weekly"
+                                           value="1" id="id_repeat_meeting_day_of_week_weekly_6">
+                                    Sunday
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <div class="fieldWrapper" id="div_monthly_options"
+                     style="display: none;">
+                    <div class="monthlyOptions_1">
+                        <label for="id_repeat_meeting_week_of_month">On</label>:
+                    </div>
+                    <div id="monthlyOptions">
+                        <select name="repeat_meeting_week_of_month"
+                                id="id_repeat_meeting_week_of_month">
+                            <option value="0">Day</option>
+                            <option value="1">First</option>
+                            <option value="2">Second</option>
+                            <option value="3">Third</option>
+                            <option value="4">Fourth</option>
+                            <option value="5">Last</option>
+                        </select>
+                        <input type="text" name="repeat_meeting_day_of_month" value=""
+                               id="id_repeat_meeting_day_of_month" aria-label=""
+                               style="display: none;">
+                        <select name="repeat_meeting_day_of_week_monthly"
+                                id="id_repeat_meeting_day_of_week_monthly"
+                                aria-label="Repeat on Day of Week" style="display: none;">
+                            <option value="1">Sunday</option>
+                            <option value="2">Monday</option>
+                            <option value="4">Tuesday</option>
+                            <option value="8">Wednesday</option>
+                            <option value="16">Thursday</option>
+                            <option value="32">Friday</option>
+                            <option value="64">Saturday</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <hr />
+                <div id="div_recurrence_ending">
+                    <div class="fieldWrapper" id="div_recurrence_ending_1">
+                        <div class="recurrenceEnding_1">
+                            <label for="id_recurssion_ending_0">Ends</label>:
+                        </div>
+                        <div id="recurrenceEnding_1">
+                            <input id="id_recurssion_ending_0" type="radio"
+                                   name="recurssion_ending" value="NEVER" checked="checked">
+                            <label for="id_recurssion_ending_0">Never</label>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="fieldWrapper" id="div_recurrence_ending_2">
+                        <div class="recurrenceEnding_2">&nbsp;</div>
+                        <div id="recurrenceEnding_2">
+                            <input id="id_recurssion_ending_1" type="radio"
+                                   name="recurssion_ending" value="OCCURRENCES">
+                            <label for="id_recurssion_ending_1">After</label>
+                            <input name="recurssion_ending_sub_options_occurrences" value="2" maxlength="3" 
+                                   type="text" id="id_recurssion_ending_sub_options_occurrences" size="3" 
+                                   aria-label="Number of Ocurrences" disabled=""> occurrences 
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="fieldWrapper" id="div_recurrence_ending_3">
+                        <div class="recurrenceEnding_3">&nbsp;</div>
+                        <div id="recurrenceEnding_3">
+                            <input id="id_recurssion_ending_2" type="radio"
+                                   name="recurssion_ending" value="ON"> <label for="id_recurssion_ending_2">On</label>
+                            <input type="text" id="endDatePicker" disabled="disabled" />
+                            <!-- <img class="ui-datepicker-trigger" src="/media/images/calendar.gif"
+                                  alt="..." title="..." style="opacity: 0.5; cursor: default;"> -->
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="clear"></div>
+            </div>
+        </div>
+        <input type="hidden" name="recurrencePattern.recurrenceType" />
+        <input type="hidden" name="recurrencePattern.endDate" />
+        <input type="hidden" name="recurrencePattern.recurrenceCount" />
+        <input type="hidden" name="recurrencePattern.frequency" />
+        <input type="hidden" name="recurrencePattern.daysOfWeekMask" />
+        <input type="hidden" name="recurrencePattern.dayOfMonth" />
+        <input type="hidden" name="recurrencePattern.weekOfMonth" />
+        <input type="hidden" name="recurrencePattern.monthOfYear" />
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.addAttendeePasscode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.addAttendeePasscode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.addAttendeePasscode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.advancedMeetingOptions.showAllAttendeesInMeetingInvite, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.advancedMeetingOptions.showAllAttendeesInMeetingInvite, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.advancedMeetingOptions.showAllAttendeesInMeetingInvite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.advancedMeetingOptions.moderatorLess, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.advancedMeetingOptions.moderatorLess, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.advancedMeetingOptions.moderatorLess, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.advancedMeetingOptions.autoRecord, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.advancedMeetingOptions.autoRecord, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.advancedMeetingOptions.autoRecord, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.advancedMeetingOptions.disallowChat, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.advancedMeetingOptions.disallowChat, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.advancedMeetingOptions.disallowChat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.advancedMeetingOptions.muteParticipantsOnEntry, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.advancedMeetingOptions.muteParticipantsOnEntry, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.advancedMeetingOptions.muteParticipantsOnEntry, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/create")
+}
