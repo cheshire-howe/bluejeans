@@ -94,7 +94,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:choose>
-				<c:when test="${ meeting.addAttendeePasscode }"> <!-- TODO: change to meeting passcode check -->
+				<c:when test="${ meeting.addAttendeePasscode }">
 					<a href="https://bluejeans.com/${ meeting.numericMeetingId }/${ meeting.attendeePasscode }" target="_blank">
 						<button class="btn-go">Join Meeting as Participant</button>
 					</a>
@@ -116,10 +116,18 @@
 	<h2 id="meetingInfoTrigger">Meeting Information</h2>
 	<div style="display:none;" id="meetingInfo">
 		<dl class="meeting-info">
-			<dt>Meeting URL</dt>
-			<dd>https://bluejeans.com/${ meeting.numericMeetingId }</dd>
-			<dt></dt>
-			<dd></dd>
+			<c:choose>
+				<c:when test="${ meeting.addAttendeePasscode }">
+					<dt>Participant Passcode</dt>
+					<dd>${ meeting.attendeePasscode }</dd>
+					<dt>Meeting URL</dt>
+					<dd>https://bluejeans.com/${ meeting.numericMeetingId }/${ meeting.attendeePasscode }</dd>
+				</c:when>
+				<c:otherwise>
+					<dt>Meeting URL</dt>
+					<dd>https://bluejeans.com/${ meeting.numericMeetingId }</dd>
+				</c:otherwise>
+			</c:choose>
 		</dl>
 	</div>
 </bbNG:genericPage>

@@ -73,6 +73,7 @@ public class ClassroomController {
 		meeting = Utils.convertMeeting(meeting);
 
 		Meeting m = _connector.createMeeting(meeting);
+		m.setEmail(meeting.getEmail());
 
 		// save meeting_id and other info to db
 		_meetingPersister.saveMeeting(m, bbCourseId);

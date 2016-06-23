@@ -31,4 +31,9 @@ public class HelloController {
 	public String postClass(@ModelAttribute Meeting meeting) {
 		return "result";
 	}
+	
+	@RequestMapping(value = "/test")
+	public ModelAndView getTest() {
+		return new ModelAndView("test/test");
+	}
 }

@@ -38,6 +38,7 @@ public class Meeting
 	private Long nextStart;
 	private Long nextEnd;
 	private Boolean isPersonalMeeting;
+	private String email;
 
 	/**
 	 * 
@@ -547,5 +548,13 @@ public class Meeting
 	 */
 	public void setIsPersonalMeeting(Boolean isPersonalMeeting) {
 		this.isPersonalMeeting = isPersonalMeeting;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

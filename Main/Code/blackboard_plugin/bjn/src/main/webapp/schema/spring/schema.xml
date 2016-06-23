@@ -11,6 +11,7 @@
 		 <column name="title" data-type="nvarchar(256)" nullable="false" />
 		 <column name="meeting_id" data-type="int" nullable="false" />
 		 <column name="course_id" data-type="nvarchar(64)" nullable="false" />
+		 <column name="email" data-type="nvarchar(200)" nullable="false" />
 		 <primary-key name="tp_meeting_table_pk1">
 			<columnref name="pk1" />
 		</primary-key>

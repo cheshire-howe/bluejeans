@@ -5,6 +5,9 @@ import java.util.Map;
 
 import org.springframework.web.client.RestTemplate;
 
+import blackboard.platform.context.Context;
+import blackboard.platform.context.ContextManager;
+import blackboard.platform.context.ContextManagerFactory;
 import blackboard.plugin.virtualclassroom.model.Meeting;
 import blackboard.plugin.virtualclassroom.model.UserRoomSettings;
 
@@ -19,13 +22,17 @@ public class Connector {
 	// Meetings
 	public Meeting createMeeting(Meeting meeting) {
 		
-		return _restTemplate.postForObject("http://dev.threepointturn.com:8178/api/Meeting", meeting,
+		return _restTemplate.postForObject("http://dev.threepointturn.com:8179/api/Meeting?email=" + meeting.getEmail(), meeting,
 				Meeting.class);
 	}
 	
 	public Meeting getMeeting(String meetingId) {
 		
-		Meeting meeting = _restTemplate.getForObject("http://dev.threepointturn.com:8178/api/Meeting/" + meetingId,
+		ContextManager contextManager = ContextManagerFactory.getInstance();
+		Context ctx = contextManager.getContext();
+		String currentUserEmail = ctx.getUser().getEmailAddress();
+		
+		Meeting meeting = _restTemplate.getForObject("http://dev.threepointturn.com:8179/api/Meeting/" + meetingId + "?email=" + currentUserEmail,
 				Meeting.class);
 		
 		return meeting;
@@ -33,7 +40,7 @@ public class Connector {
 	
 	public void updateMeeting(Meeting meeting, String meetingId) {
 
-		final String uri = "http://dev.threepointturn.com:8178/api/Meeting/{id}";
+		final String uri = "http://dev.threepointturn.com:8179/api/Meeting/{id}?email=" + meeting.getEmail();
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("id", meetingId);
@@ -43,7 +50,11 @@ public class Connector {
 	
 	public void deleteMeeting(String meetingId) {
 		
-		final String uri = "http://dev.threepointturn.com:8178/api/Meeting/{id}";
+		ContextManager contextManager = ContextManagerFactory.getInstance();
+		Context ctx = contextManager.getContext();
+		String currentUserEmail = ctx.getUser().getEmailAddress();
+		
+		final String uri = "http://dev.threepointturn.com:8179/api/Meeting/{id}?email=" + currentUserEmail;
 	     
 	    Map<String, String> params = new HashMap<String, String>();
 	    params.put("id", meetingId);
@@ -54,13 +65,21 @@ public class Connector {
 	// UserRoomSettings
 	public UserRoomSettings getUserRoomSettings() {
 		
-		return _restTemplate.getForObject("http://dev.threepointturn.com:8178/api/User/RoomSettings", UserRoomSettings.class);
+		ContextManager contextManager = ContextManagerFactory.getInstance();
+		Context ctx = contextManager.getContext();
+		String currentUserEmail = ctx.getUser().getEmailAddress();
+		
+		return _restTemplate.getForObject("http://dev.threepointturn.com:8179/api/User/RoomSettings?email=" + currentUserEmail, UserRoomSettings.class);
 	}
 	
 	// Video Links
 	public String[] getDownloadUrls(String numericMeetingId) {
 		
-		String[] response = _restTemplate.getForObject("http://dev.threepointturn.com:8178/api/Meeting/" + numericMeetingId + "/GetDownloadUrls", String[].class);
+		ContextManager contextManager = ContextManagerFactory.getInstance();
+		Context ctx = contextManager.getContext();
+		String currentUserEmail = ctx.getUser().getEmailAddress();
+		
+		String[] response = _restTemplate.getForObject("http://dev.threepointturn.com:8179/api/Meeting/" + numericMeetingId + "/GetDownloadUrls?email=" + currentUserEmail, String[].class);
 		return response;
 	}
 }

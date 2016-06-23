@@ -65,4 +65,55 @@ public class MeetingLoader
 		
 		return meetings;
 	}
+	
+	public Meeting loadMeeting(int meetingId) {
+		Meeting m = new Meeting();
+		
+		ConnectionManager cManager = null;
+		Connection conn = null;
+		StringBuffer queryString = new StringBuffer("");
+		PreparedStatement selectQuery = null;
+
+		try {
+
+			cManager = BbDatabase.getDefaultInstance().getConnectionManager();
+			conn = cManager.getConnection();
+
+			queryString.append("SELECT title, meeting_id, course_id, email ");
+			queryString.append("FROM ");
+			queryString.append("tp_meeting_table ");
+			queryString.append("WHERE meeting_id = ?");
+			selectQuery = conn.prepareStatement(queryString.toString(), ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			selectQuery.setInt(1, meetingId);
+			ResultSet rSet = selectQuery.executeQuery();
+
+			while (rSet.next()) {
+				m.setTitle(rSet.getString(1));
+				m.setId(rSet.getInt(2));
+				m.setEmail(rSet.getString(4));
+			}
+
+			rSet.close();
+
+			selectQuery.close();
+
+		} catch (java.sql.SQLException sE) {
+
+			// LOGGER.error( sE.getMessage() ) ;
+
+		} catch (ConnectionNotAvailableException cE) {
+
+			// LOGGER.error( cE.getMessage() ) ;
+
+		} finally {
+
+			if (conn != null) {
+				cManager.releaseConnection(conn);
+			}
+
+		}
+		
+		return m;
+	}
 }

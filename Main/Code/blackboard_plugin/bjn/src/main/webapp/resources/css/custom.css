@@ -124,3 +124,15 @@ fieldset[disabled] .btn-go.active {
     position: relative;
     top: -56px;
 }
+
+.meeting-info dt {
+	font-weight: bold;
+}
+
+.meeting-info dd {
+	margin-left: 10px;
+}
+
+.meeting-info dt, .meeting-info dd {
+	line-height: 20px;
+}
