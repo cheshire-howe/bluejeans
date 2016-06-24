@@ -41,12 +41,16 @@
 			usertable.put(i, info);
 			i++;
 		}
+
+		User currentUser = ctx.getUser();
+		String currentUserEmail = currentUser.getEmailAddress();
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		String userinfo = objectMapper.writeValueAsString(usertable);
 		
 		pageContext.setAttribute("users", userinfo);
+		pageContext.setAttribute("currentUserEmail", currentUserEmail);
 	%>
 </bbData:context>
 
@@ -84,6 +88,7 @@
     <img src="resources/images/BJN_logowtext@2x.png" class="bjn-branding bjn-logo-header">
 
 	<bbNG:form action="" method="post" nonceId="/update" id="bjnform">
+		<input type="hidden" name="email" value="${ currentUserEmail }" />
 		<bbNG:dataCollection>
 			<bbNG:step title="Step One">
 				<bbNG:dataElement label="Class Title" isRequired="true" labelFor="title">
