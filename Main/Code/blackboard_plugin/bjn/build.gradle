@@ -9,7 +9,7 @@ apply plugin: "idea"
 
 // define the version for the project when publishing to maven
 group "threepointturn"
-version "1.0"
+version "1.0.1"
 
 ext {
   learnVersion = "9.1.120113.0"

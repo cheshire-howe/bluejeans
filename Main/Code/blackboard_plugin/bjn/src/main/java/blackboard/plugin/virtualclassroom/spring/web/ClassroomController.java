@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -163,8 +164,11 @@ public class ClassroomController {
 		Date nextStart = new Date((long) meeting.getNextStart());
 		Date nextEnd = new Date((long) meeting.getNextEnd());
 		
+		TimeZone tZone = Calendar.getInstance().getTimeZone();
 		SimpleDateFormat startFormat = new SimpleDateFormat("EEEE MMMM dd yyyy, hh:mm");
+		startFormat.setTimeZone(tZone);
 		SimpleDateFormat endFormat = new SimpleDateFormat("hh:mm a zz");
+		endFormat.setTimeZone(tZone);
 		
 		Map<String, String> viewValues = new HashMap<String, String>();
 		viewValues.put("start", startFormat.format(nextStart));
