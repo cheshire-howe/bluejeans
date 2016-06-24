@@ -26,9 +26,9 @@ public class MeetingPersister {
 			conn = cManager.getConnection();
 
 			queryString.append("INSERT INTO tp_meeting_table ");
-			queryString.append("(pk1, title, meeting_id, course_id, email ) ");
+			queryString.append("(title, meeting_id, course_id, email ) ");
 
-			queryString.append(" VALUES (nextval('tp_meeting_table_seq'), ?,?,?,?) ");
+			queryString.append(" VALUES ?,?,?,?) ");
 
 			PreparedStatement insertQuery = conn.prepareStatement(queryString.toString());
 			insertQuery.setString(1, meeting.getTitle());
