@@ -1,4 +1,6 @@
 <!doctype>
+<%@page import="blackboard.data.course.CourseMembership.Role"%>
+<%@page import="blackboard.data.course.CourseMembership"%>
 <%@page import="
         blackboard.data.navigation.NavigationItem,
         blackboard.persist.navigation.NavigationItemDbLoader,
@@ -17,16 +19,13 @@
 	<%
 		// Get course
 		Course course = ctx.getCourse();
-	
-		// Get current user and role
-		User user = ctx.getUser();
-		User.SystemRole role = user.getSystemRole();
-		boolean isAdmin = false;
-		isAdmin = role == User.SystemRole.SYSTEM_ADMIN;
 		
+		CourseMembership cm = ctx.getCourseMembership();
+		Role cRole = cm.getRole();
+		boolean isInstructor = cRole == CourseMembership.Role.INSTRUCTOR;
+
 		pageContext.setAttribute("course", course);
-		pageContext.setAttribute("role", role);
-		pageContext.setAttribute("isAdmin", isAdmin);
+		pageContext.setAttribute("isInstructor", isInstructor);
 	%>
 </bbData:context>
 
@@ -56,7 +55,7 @@
     
     <img src="resources/images/BJN_logowtext@2x.png" class="bjn-branding bjn-logo-header">
     
-    <c:if test="${ isAdmin }">
+    <c:if test="${ isInstructor }">
 		<div>
 			<a href="update?course_id=${ courseId }&meeting_id=${meeting.id}">Edit</a>
 			|
@@ -87,7 +86,7 @@
 	<h3>BlueJeans Video Conference</h3>
 	
 	<c:choose>
-		<c:when test="${ isAdmin }">
+		<c:when test="${ isInstructor }">
 			<a href="https://bluejeans.com/${ meeting.numericMeetingId }/${ viewValues.moderatorPasscode }" target="_blank">
 				<button class="btn-go">Join Meeting as Moderator</button>
 			</a>

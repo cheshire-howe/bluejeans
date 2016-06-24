@@ -1,4 +1,6 @@
 <!doctype>
+<%@page import="blackboard.data.course.CourseMembership.Role"%>
+<%@page import="blackboard.data.course.CourseMembership"%>
 <%@page import="
         blackboard.data.navigation.NavigationItem,
         blackboard.persist.navigation.NavigationItemDbLoader,
@@ -15,6 +17,20 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib uri="/bbNG" prefix="bbNG" %>
 <%@taglib uri="/bbData" prefix="bbData" %>
+
+<bbData:context id="ctx">
+	<%
+		// Get course
+		Course course = ctx.getCourse();
+		
+		CourseMembership cm = ctx.getCourseMembership();
+		Role cRole = cm.getRole();
+		boolean isInstructor = cRole == CourseMembership.Role.INSTRUCTOR;
+
+		pageContext.setAttribute("course", course);
+		pageContext.setAttribute("isInstructor", isInstructor);
+	%>
+</bbData:context>
 
 <bbNG:genericPage>
 	<bbNG:cssFile href="resources/css/custom.css"/>
@@ -35,9 +51,13 @@
 		</c:forEach>
 	</div>
 	
-	<div>
-		<h3><a href='create?course_id=${ courseId }'>Schedule Class</a></h3>
-	</div>
+	<c:choose>
+		<c:when test="${ isInstructor }">
+			<div>
+				<h3><a href='create?course_id=${ courseId }'>Schedule Class</a></h3>
+			</div>
+		</c:when>
+	</c:choose>
     
     <img src="resources/images/BJN_logowtext@2x.png">
 	
